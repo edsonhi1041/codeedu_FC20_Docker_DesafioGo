@@ -1,6 +1,6 @@
 # codeedu_FC20_Docker_DesafioGo
 
-# link da image no Docker Hub
+# Link da image no Docker Hub
 https://hub.docker.com/r/edsonhi1041/startcode
 
 # Build, Run and Push
