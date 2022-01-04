@@ -1,0 +1,27 @@
+#
+#   docker build -t edsonhi1041/startcode:prod . -f Dockerfile.prod
+#   docker run -d -it edsonhi1041/startcode:prod
+#
+
+FROM golang:alpine AS builder
+
+RUN apk update && apk add --no-cache git 
+
+WORKDIR $GOPATH/src/fullcycle/myapp/
+
+COPY . .
+
+RUN go mod init
+
+RUN go get -d -v
+
+RUN go build -o /go/bin/startcode
+
+
+FROM scratch
+
+WORKDIR /go/src/app
+
+COPY --from=builder /go/bin/startcode /go/bin/startcode
+
+ENTRYPOINT ["/go/bin/startcode"]
